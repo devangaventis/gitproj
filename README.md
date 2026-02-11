@@ -47,6 +47,25 @@ From IntelliJ:
 2. Click the green run icon next to the class or test method.
 3. Run all tests.
 
+
+## Run tests and generate Allure report
+Use these commands from the project root:
+
+```bash
+mvn clean test
+mvn allure:report
+```
+
+Generated artifacts:
+- Raw results: `allure-results`
+- HTML report: `target/site/allure-maven-plugin/index.html`
+
+To open the report quickly:
+
+```bash
+xdg-open target/site/allure-maven-plugin/index.html
+```
+
 ## Expected output
 - Maven builds the project.
 - JUnit runs `RestAssuredApiTest`.

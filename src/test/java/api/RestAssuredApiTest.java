@@ -1,5 +1,9 @@
 package api;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Story;
 import io.restassured.RestAssured;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
@@ -13,6 +17,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 
+@Feature("Posts API")
 class RestAssuredApiTest {
 
     private static MockWebServer mockWebServer;
@@ -30,6 +35,9 @@ class RestAssuredApiTest {
     }
 
     @Test
+    @Story("Read single post")
+    @Description("Validates GET /posts/1 returns 200 with expected fields")
+    @Owner("qa-team")
     void getSinglePostShouldReturnExpectedFields() {
         mockWebServer.enqueue(new MockResponse()
             .setResponseCode(200)
@@ -53,6 +61,9 @@ class RestAssuredApiTest {
     }
 
     @Test
+    @Story("List posts")
+    @Description("Validates GET /posts returns the expected list size")
+    @Owner("qa-team")
     void listPostsShouldReturnThreeRecords() {
         mockWebServer.enqueue(new MockResponse()
             .setResponseCode(200)
@@ -74,6 +85,9 @@ class RestAssuredApiTest {
     }
 
     @Test
+    @Story("Create post")
+    @Description("Validates POST /posts returns 201 with echoed payload")
+    @Owner("qa-team")
     void createPostShouldReturn201AndPayload() {
         mockWebServer.enqueue(new MockResponse()
             .setResponseCode(201)
